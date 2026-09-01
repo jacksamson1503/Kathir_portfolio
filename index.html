@@ -99,10 +99,12 @@
     .project-motion { position:relative; display:block; width:92px; height:70px; border:3px solid var(--accent); border-radius:7px; animation:projectFloat 3.6s ease-in-out infinite; }
     .project-motion::before { content:''; position:absolute; left:50%; top:50%; width:0; height:0; border-top:12px solid transparent; border-bottom:12px solid transparent; border-left:19px solid var(--accent); transform:translate(-38%,-50%); }
     .project-motion::after { content:''; position:absolute; width:28px; height:28px; right:-14px; bottom:-13px; border:3px solid var(--accent-2); border-radius:50%; animation:orbit 3.6s linear infinite; }
-    .project:nth-child(2) .project-motion::before { width:44px; height:3px; border:0; background:var(--accent); box-shadow:0 -13px var(--accent),0 13px var(--accent); transform:translate(-50%,-50%); }
-    .project:nth-child(3) .project-motion { border-radius:50%; width:67px; height:67px; } .project:nth-child(3) .project-motion::before { border-top-width:10px; border-bottom-width:10px; border-left-width:16px; }
-    .project:nth-child(4) .project-motion::before { width:30px; height:30px; border:3px solid var(--accent); border-radius:50%; background:transparent; transform:translate(-50%,-50%); } .project:nth-child(4) .project-motion::after { width:17px; height:17px; right:auto; left:-10px; top:-10px; }
     @keyframes projectFloat { 50% { transform:translateY(-7px) rotate(1.5deg); } } @keyframes orbit { to { transform:rotate(360deg); } }
+    .featured-video { margin-top:1.25rem; padding:clamp(1.1rem,3vw,1.7rem); border:1px solid var(--line); border-radius:16px; background:var(--surface); box-shadow:0 14px 35px rgba(22,31,61,.06); }
+    .featured-video-head { display:flex; justify-content:space-between; gap:1rem; align-items:baseline; margin-bottom:1rem; }
+    .featured-video-head h3 { margin:0; font-size:1.05rem; }
+    .featured-video-head span { color:var(--accent); font:500 .72rem 'DM Mono',monospace; letter-spacing:.08em; }
+    .featured-video video { display:block; width:100%; max-height:620px; background:var(--ink); border-radius:10px; }
     .project-graphic svg { width:65%; color:var(--accent); }
     .project h3 { font-size:1.1rem; margin:.2rem 0 .65rem; }
     .project p { color:var(--muted); font-size:.82rem; margin:0; }
@@ -195,6 +197,7 @@
       <article class="project reveal"><span class="project-number">PROJECT 03</span><div class="project-graphic" role="img" aria-label="Animated project three graphic"><span class="project-motion" aria-hidden="true"></span></div><div><h3>Script 03</h3><a class="project-link" href="https://drive.google.com/file/d/1q_mqwzQfIb2yg8P3lmxNG3AfD8W_qkED/view" target="_blank" rel="noopener noreferrer">View project ↗</a></div></article>
       <article class="project reveal"><span class="project-number">PROJECT 04</span><div class="project-graphic" role="img" aria-label="Animated project four graphic"><span class="project-motion" aria-hidden="true"></span></div><div><h3>Script 04</h3><a class="project-link" href="https://drive.google.com/file/d/1SPDvx-BPzFStVs6A2CbDC0ziBkg4Y9-b/view" target="_blank" rel="noopener noreferrer">View project ↗</a></div></article>
     </div></div></section>
+    <section class="section-divider" id="featured-video"><div class="container"><div class="featured-video box-effect"><div class="featured-video-head"><h3>Featured video</h3><span>LIVE VIDEO</span></div><video controls playsinline preload="metadata" aria-label="Kathir M featured video"><source src="VN20260620_170459.mp4" type="video/mp4">Your browser does not support HTML5 video.</video></div></div></section>
 
     <section class="section-divider" id="web"><div class="container web-callout reveal"><div><p class="eyebrow">05 — Web projects</p><h3>Visual thinking, translated to the web.</h3><p>Personal web-development work that applies visual design principles to usable interfaces.</p><a class="button primary" href="https://github.com/Kathir0202" target="_blank" rel="noopener noreferrer">View GitHub ↗</a></div><div class="tool-list" aria-label="Web development tools"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Bootstrap</span><span>GitHub</span></div></div></section>
 
@@ -212,7 +215,7 @@
       links.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { links.classList.remove('open'); menu.setAttribute('aria-expanded', 'false'); menu.setAttribute('aria-label', 'Open navigation'); }));
       document.getElementById('year').textContent = new Date().getFullYear();
       const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const boxSelectors = '.hero-card,.stat,.skill-group,.experience-card,.project,.web-callout,.education-card,.credentials-note';
+      const boxSelectors = '.hero-card,.stat,.skill-group,.experience-card,.project,.featured-video,.web-callout,.education-card,.credentials-note';
       const motionBoxes = [...document.querySelectorAll(boxSelectors)];
       motionBoxes.forEach((box, index) => { box.classList.add('box-effect'); box.style.setProperty('--mobile-delay', (index % 3) * 80 + 'ms'); });
       if (reduced || !('IntersectionObserver' in window)) motionBoxes.forEach(box => box.classList.add('in-view'));

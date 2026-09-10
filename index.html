@@ -67,15 +67,19 @@
     .stat { padding:1.1rem 0; border-top:1px solid var(--line); color:var(--muted); font-size:.92rem; }
     .stat strong { display:block; color:var(--ink); font-size:1.2rem; letter-spacing:-.03em; }
 
-    /* Reusable motion treatment for every card-like surface. */
     .box-effect { position:relative; isolation:isolate; transition:transform .32s cubic-bezier(.2,.8,.2,1), box-shadow .32s ease, border-color .32s ease; }
     .box-effect::before { content:''; position:absolute; z-index:-1; inset:0; border-radius:inherit; opacity:0; background:radial-gradient(circle at 82% 8%,rgba(87,84,232,.13),transparent 36%); transition:opacity .32s ease; pointer-events:none; }
     @media (hover:hover) { .box-effect:hover { transform:translateY(-8px) scale(1.01); box-shadow:0 22px 48px rgba(22,31,61,.14); border-color:#bdbbff; } .box-effect:hover::before { opacity:1; } .skill-group.box-effect:hover { background:rgba(255,255,255,.06); border-color:rgba(197,249,97,.65); } }
     @media (hover:none) { .box-effect:active { transform:scale(.985); } }
 
-    .skills-wrap { background:var(--ink); color:#d9deeb; border-radius:var(--radius); padding:clamp(1.5rem,5vw,4rem); }
+    .skills-wrap { position:relative; overflow:hidden; background:var(--ink); color:#d9deeb; border-radius:var(--radius); padding:clamp(1.5rem,5vw,4rem); }
     .skills-wrap h2 { color:#fff; }
     .skills-wrap .eyebrow { color:var(--accent-2); }
+    .skills-wrap > :not(.particles) { position:relative; z-index:1; }
+
+    .particles { position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
+    .particle { position:absolute; left:var(--x); top:var(--y); width:var(--s); height:var(--s); border-radius:50%; background:radial-gradient(circle at 34% 34%, #fff, var(--pc) 42%, transparent 75%); box-shadow:0 0 12px 2px var(--pc); opacity:.55; animation:particleDrift var(--dur) ease-in-out infinite; animation-delay:var(--del,0s); will-change:transform,opacity; }
+    @keyframes particleDrift { 0%,100% { transform:translate(0,0) scale(.85); opacity:.3; } 50% { transform:translate(var(--dx),var(--dy)) scale(1.15); opacity:.8; } }
     .skills-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; }
     .skill-group { border:1px solid rgba(255,255,255,.14); padding:1.25rem; border-radius:12px; }
     .skill-group h3 { color:#fff; font-size:1rem; margin-bottom:1rem; }
@@ -127,7 +131,8 @@
     .credentials-note h3 { color:#fff; font-size:1.2rem; }
     .credentials-note p { color:#bbc3d7; }
 
-    .contact { background:var(--ink); color:#fff; }
+    .contact { position:relative; overflow:hidden; background:var(--ink); color:#fff; }
+    .contact .container { position:relative; z-index:1; }
     .contact h2 { color:#fff; font-size:clamp(2.4rem,6vw,5.2rem); max-width:850px; }
     .contact .eyebrow { color:var(--accent-2); }
     .contact-copy { color:#bbc3d7; max-width:580px; font-size:1.06rem; }
@@ -187,7 +192,18 @@
 
     <section class="section-divider" id="about"><div class="container about-grid"><div class="reveal"><p class="eyebrow">01 — About</p><h2>Research-led creativity, shaped for real audiences.</h2></div><div class="about-aside reveal"><p class="about-copy">Kathir researches cinema, sports, technology, and general-interest topics, verifies the details, then turns the insight into concise, audience-first content. From captions and visual posts to short video and simple web pages, the focus is always clarity and attention.</p><div class="stat"><strong>Content to interface</strong>Writing, visual development, video editing, and front-end web foundations.</div><div class="stat"><strong>Clear by design</strong>Complex information made engaging and easy to understand.</div></div></div></section>
 
-    <section id="skills"><div class="container skills-wrap reveal"><p class="eyebrow">02 — Capabilities</p><h2>Practical skills for a complete content workflow.</h2><div class="skills-grid"><article class="skill-group"><h3>Research & writing</h3><ul><li>Content research</li><li>Source verification</li><li>Headline writing</li><li>Content planning</li><li>Prompt writing</li></ul></article><article class="skill-group"><h3>Creative production</h3><ul><li>Social media content</li><li>Visual storytelling</li><li>Storyboarding</li><li>Short-form video</li><li>Thumbnail design</li></ul></article><article class="skill-group"><h3>Tools</h3><ul><li>Canva</li><li>CapCut</li><li>GitHub</li></ul></article><article class="skill-group"><h3>Web foundations</h3><ul><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Bootstrap</li></ul></article></div></div></section>
+    <section id="skills"><div class="container skills-wrap reveal">
+      <div class="particles" aria-hidden="true">
+        <span class="particle" style="--x:6%;--y:18%;--s:5px;--pc:#c5f961;--dur:22s;--dx:10px;--dy:-34px;--del:-2s;"></span>
+        <span class="particle" style="--x:18%;--y:62%;--s:3px;--pc:#22d3ee;--dur:26s;--dx:-14px;--dy:-24px;--del:-9s;"></span>
+        <span class="particle" style="--x:32%;--y:30%;--s:4px;--pc:#c5f961;--dur:19s;--dx:12px;--dy:22px;--del:-5s;"></span>
+        <span class="particle" style="--x:47%;--y:75%;--s:3px;--pc:#22d3ee;--dur:24s;--dx:-10px;--dy:-30px;--del:-13s;"></span>
+        <span class="particle" style="--x:61%;--y:15%;--s:5px;--pc:#22d3ee;--dur:21s;--dx:14px;--dy:26px;--del:-7s;"></span>
+        <span class="particle" style="--x:74%;--y:55%;--s:3px;--pc:#c5f961;--dur:27s;--dx:-12px;--dy:-20px;--del:-16s;"></span>
+        <span class="particle" style="--x:85%;--y:28%;--s:4px;--pc:#22d3ee;--dur:23s;--dx:8px;--dy:-28px;--del:-4s;"></span>
+        <span class="particle" style="--x:92%;--y:70%;--s:3px;--pc:#c5f961;--dur:25s;--dx:-9px;--dy:18px;--del:-11s;"></span>
+      </div>
+      <p class="eyebrow">02 — Capabilities</p><h2>Practical skills for a complete content workflow.</h2><div class="skills-grid"><article class="skill-group"><h3>Research & writing</h3><ul><li>Content research</li><li>Source verification</li><li>Headline writing</li><li>Content planning</li><li>Prompt writing</li></ul></article><article class="skill-group"><h3>Creative production</h3><ul><li>Social media content</li><li>Visual storytelling</li><li>Storyboarding</li><li>Short-form video</li><li>Thumbnail design</li></ul></article><article class="skill-group"><h3>Tools</h3><ul><li>Canva</li><li>CapCut</li><li>GitHub</li></ul></article><article class="skill-group"><h3>Web foundations</h3><ul><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Bootstrap</li></ul></article></div></div></section>
 
     <section class="section-divider" id="experience"><div class="container"><div class="section-intro reveal"><p class="eyebrow">03 — Experience</p><h2>Independent creative projects.</h2><p>Content development across topical research, concise writing, visual assets, and short-form production.</p></div><div class="experience reveal"><div class="experience-label">Content Creator<br>Tamil Nadu, India</div><article class="experience-card"><h3>From current topics to ready-to-share content.</h3><p>An end-to-end creative workflow built around research, ideas, writing, visuals, and editing.</p><ul><li>Research current and trending topics across cinema, sports, technology, and general interest.</li><li>Verify information and sources before developing content for digital platforms.</li><li>Write headlines, captions, summaries, and social-media copy for audience clarity.</li><li>Design social-ready visuals in Canva and edit short-form video in CapCut.</li><li>Adapt complex information into engaging, easy-to-understand stories.</li></ul></article></div></div></section>
 
@@ -219,7 +235,17 @@
 
     <section id="education"><div class="container"><div class="section-intro reveal"><p class="eyebrow">06 — Education & credentials</p><h2>Foundations that keep growing.</h2></div><div class="credentials-grid reveal"><article class="education-card"><p class="dates">2020 — 2023</p><h3>B.Sc. Physics</h3><p>Government Arts College, Dharmapuri</p><div class="language"><span><b>Tamil</b> — Native</span><span><b>English</b> — Good</span></div></article><aside class="credentials-note"><h3>Certifications</h3><p>No formal certifications were included in the portfolio source. This space is intentionally kept accurate and ready for verified credentials as they are earned.</p></aside></div></div></section>
 
-    <section class="contact" id="contact"><div class="container reveal"><p class="eyebrow">07 — Contact</p><h2>Have a story worth making clearer?</h2><p class="contact-copy">Let’s connect about content, creative projects, or a web experience that puts the message first.</p><div class="contact-links"><a class="button" href="mailto:kathirmmuthu2003@gmail.com">Email Kathir ↗</a><a class="button" href="tel:+919150051575">Call +91 91500 51575</a><a class="button" href="https://github.com/Kathir0202" target="_blank" rel="noopener noreferrer">GitHub ↗</a><button class="button copy-button" type="button" data-copy="kathirmmuthu2003@gmail.com">Copy email</button></div></div></section>
+    <section class="contact" id="contact">
+      <div class="particles" aria-hidden="true">
+        <span class="particle" style="--x:8%;--y:22%;--s:5px;--pc:#c5f961;--dur:24s;--dx:12px;--dy:-30px;--del:-3s;"></span>
+        <span class="particle" style="--x:22%;--y:68%;--s:3px;--pc:#22d3ee;--dur:20s;--dx:-10px;--dy:-22px;--del:-10s;"></span>
+        <span class="particle" style="--x:38%;--y:40%;--s:4px;--pc:#22d3ee;--dur:28s;--dx:14px;--dy:24px;--del:-6s;"></span>
+        <span class="particle" style="--x:55%;--y:20%;--s:3px;--pc:#c5f961;--dur:22s;--dx:-12px;--dy:26px;--del:-14s;"></span>
+        <span class="particle" style="--x:68%;--y:62%;--s:5px;--pc:#22d3ee;--dur:25s;--dx:10px;--dy:-20px;--del:-8s;"></span>
+        <span class="particle" style="--x:82%;--y:32%;--s:3px;--pc:#c5f961;--dur:23s;--dx:-8px;--dy:-28px;--del:-12s;"></span>
+        <span class="particle" style="--x:93%;--y:58%;--s:4px;--pc:#22d3ee;--dur:26s;--dx:9px;--dy:20px;--del:-5s;"></span>
+      </div>
+      <div class="container reveal"><p class="eyebrow">07 — Contact</p><h2>Have a story worth making clearer?</h2><p class="contact-copy">Let’s connect about content, creative projects, or a web experience that puts the message first.</p><div class="contact-links"><a class="button" href="mailto:kathirmmuthu2003@gmail.com">Email Kathir ↗</a><a class="button" href="tel:+919150051575">Call +91 91500 51575</a><a class="button" href="https://github.com/Kathir0202" target="_blank" rel="noopener noreferrer">GitHub ↗</a><button class="button copy-button" type="button" data-copy="kathirmmuthu2003@gmail.com">Copy email</button></div></div></section>
   </main>
   <footer><div class="container footer-row"><span>© <span id="year"></span> Kathir M. All rights reserved.</span><a href="#top">Back to top ↑</a></div></footer>
   <aside class="portfolio-chat" id="portfolio-chat" aria-label="Ask about Kathir's portfolio"><section class="chat-panel" id="chat-panel" aria-labelledby="chat-title"><h3 id="chat-title">Ask about Kathir</h3><p>Answers are based only on this portfolio.</p><div class="chat-messages" id="chat-messages" aria-live="polite"><div class="chat-message">Ask about Kathir’s skills, projects, education, or content-creation experience.</div></div><form class="chat-form" id="chat-form"><input id="chat-input" type="text" autocomplete="off" placeholder="What are Kathir's skills?" aria-label="Ask about Kathir"><button type="submit">Send</button></form></section><button class="chat-toggle" id="chat-toggle" type="button" aria-expanded="false" aria-controls="chat-panel" aria-label="Open portfolio assistant">✦</button></aside>
@@ -256,3 +282,4 @@
   </script>
 </body>
 </html>
+```
